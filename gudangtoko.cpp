@@ -96,6 +96,17 @@ void cekStok() {
     cout << "Barang tidak ditemukan.\n";
 }
 
+void daftarBarang() {
+    if (inventori.empty()) {
+        cout << "Inventori kosong.\n";
+    } else {
+        cout << "Daftar inventori:\n";
+        for (const auto &barang : inventori) {
+            cout << "ID: " << barang.id << "\nNama: " << barang.nama << "\nStok: " << barang.stok
+                 << "\nTanggal Masuk: " << barang.tanggalMasuk << "\nLokasi Rak: " << barang.lokasiRak << endl << endl;
+        }
+    }
+}
 
 void menu() {
     int pilihan;
@@ -123,7 +134,7 @@ void menu() {
                 cekStok();
                 break;
             case 5:
-                //daftarBarang();
+                daftarBarang();
                 break;
             case 6:
                 cout << "Keluar dari sistem.\n";
