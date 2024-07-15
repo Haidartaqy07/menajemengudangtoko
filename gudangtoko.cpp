@@ -50,6 +50,29 @@ void hapusBarang() {
     cout << "Barang tidak ditemukan.\n";
 }
 
+void perbaruiBarang() {
+    int id;
+    cout << "Masukkan ID barang yang ingin diperbarui: ";
+    cin >> id;
+    for (auto &barang : inventori) {
+        if (barang.id == id) {
+            cout << "Masukkan nama barang baru: ";
+            cin.ignore();
+            getline(cin, barang.nama);
+            cout << "Masukkan jumlah stok baru: ";
+            cin >> barang.stok;
+            cout << "Masukkan tanggal masuk baru (YYYY-MM-DD): ";
+            cin.ignore();
+            getline(cin, barang.tanggalMasuk);
+            cout << "Masukkan lokasi rak baru: ";
+            getline(cin, barang.lokasiRak);
+            cout << "Barang berhasil diperbarui!\n";
+            return;
+        }
+    }
+    cout << "Barang tidak ditemukan.\n";
+}
+
 void menu() {
     int pilihan;
     do {
@@ -65,8 +88,7 @@ void menu() {
         switch (pilihan) {
             case 1: tambahBarang(); break;
             case 2: hapusBarang(); break;
-            case 3:
-                // perbaruiBarang();
+            case 3: perbaruiBarang();
                 break;
             case 4:
                 // cekStok();
@@ -82,6 +104,7 @@ void menu() {
         }
     } while (pilihan != 6);
 }
+
 
 int main() {
     menu();
