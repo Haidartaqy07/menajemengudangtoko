@@ -14,6 +14,10 @@ struct Barang {
 
 vector<Barang> inventori;
 
+void tambahBarang();
+void hapusBarang();
+void menu(); // Deklarasi prototipe fungsi menu()
+
 void tambahBarang() {
     Barang barangBaru;
     cout << "Masukkan ID barang: ";
@@ -32,6 +36,20 @@ void tambahBarang() {
     cout << "Barang berhasil ditambahkan!\n";
 }
 
+void hapusBarang() {
+    int id;
+    cout << "Masukkan ID barang yang ingin dihapus: ";
+    cin >> id;
+    for (auto it = inventori.begin(); it != inventori.end(); ++it) {
+        if (it->id == id) {
+            inventori.erase(it);
+            cout << "Barang berhasil dihapus!\n";
+            return;
+        }
+    }
+    cout << "Barang tidak ditemukan.\n";
+}
+
 void menu() {
     int pilihan;
     do {
@@ -45,12 +63,8 @@ void menu() {
         cout << "Masukkan pilihan Anda: ";
         cin >> pilihan;
         switch (pilihan) {
-            case 1:
-                // tambahBarang();
-                break;
-            case 2:
-                // hapusBarang();
-                break;
+            case 1: tambahBarang(); break;
+            case 2: hapusBarang(); break;
             case 3:
                 // perbaruiBarang();
                 break;
@@ -73,3 +87,4 @@ int main() {
     menu();
     return 0;
 }
+
