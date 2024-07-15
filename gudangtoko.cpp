@@ -14,6 +14,24 @@ struct Barang {
 
 vector<Barang> inventori;
 
+void tambahBarang() {
+    Barang barangBaru;
+    cout << "Masukkan ID barang: ";
+    cin >> barangBaru.id;
+    cout << "Masukkan nama barang: ";
+    cin.ignore();
+    getline(cin, barangBaru.nama);
+    cout << "Masukkan jumlah stok: ";
+    cin >> barangBaru.stok;
+    cout << "Masukkan tanggal masuk (YYYY-MM-DD): ";
+    cin.ignore();
+    getline(cin, barangBaru.tanggalMasuk);
+    cout << "Masukkan lokasi rak: ";
+    getline(cin, barangBaru.lokasiRak);
+    inventori.push_back(barangBaru);
+    cout << "Barang berhasil ditambahkan!\n";
+}
+
 void menu() {
     int pilihan;
     do {
