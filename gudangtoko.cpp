@@ -73,6 +73,20 @@ void perbaruiBarang() {
     cout << "Barang tidak ditemukan.\n";
 }
 
+void cekStok() {
+    int id;
+    cout << "Masukkan ID barang untuk mengecek stok: ";
+    cin >> id;
+    for (const auto &barang : inventori) {
+        if (barang.id == id) {
+            cout << "Barang: " << barang.nama << "\nStok: " << barang.stok
+                 << "\nTanggal Masuk: " << barang.tanggalMasuk << "\nLokasi Rak: " << barang.lokasiRak << endl;
+            return;
+        }
+    }
+    cout << "Barang tidak ditemukan.\n";
+}
+
 void menu() {
     int pilihan;
     do {
@@ -90,8 +104,7 @@ void menu() {
             case 2: hapusBarang(); break;
             case 3: perbaruiBarang();
                 break;
-            case 4:
-                // cekStok();
+            case 4:cekStok();
                 break;
             case 5:
                 // daftarBarang();
