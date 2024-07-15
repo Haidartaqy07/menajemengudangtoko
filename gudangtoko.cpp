@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -14,19 +15,23 @@ struct Barang {
 
 vector<Barang> inventori;
 
-void tambahBarang();
-void hapusBarang();
-void menu(); // Deklarasi prototipe fungsi menu()
-
 void tambahBarang() {
     Barang barangBaru;
     cout << "Masukkan ID barang: ";
-    cin >> barangBaru.id;
+    while (!(cin >> barangBaru.id)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Input tidak valid. Masukkan ID barang: ";
+    }
     cout << "Masukkan nama barang: ";
     cin.ignore();
     getline(cin, barangBaru.nama);
     cout << "Masukkan jumlah stok: ";
-    cin >> barangBaru.stok;
+    while (!(cin >> barangBaru.stok)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Input tidak valid. Masukkan jumlah stok: ";
+    }
     cout << "Masukkan tanggal masuk (YYYY-MM-DD): ";
     cin.ignore();
     getline(cin, barangBaru.tanggalMasuk);
@@ -60,7 +65,11 @@ void perbaruiBarang() {
             cin.ignore();
             getline(cin, barang.nama);
             cout << "Masukkan jumlah stok baru: ";
-            cin >> barang.stok;
+            while (!(cin >> barang.stok)) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Input tidak valid. Masukkan jumlah stok baru: ";
+            }
             cout << "Masukkan tanggal masuk baru (YYYY-MM-DD): ";
             cin.ignore();
             getline(cin, barang.tanggalMasuk);
@@ -87,6 +96,7 @@ void cekStok() {
     cout << "Barang tidak ditemukan.\n";
 }
 
+
 void menu() {
     int pilihan;
     do {
@@ -100,14 +110,20 @@ void menu() {
         cout << "Masukkan pilihan Anda: ";
         cin >> pilihan;
         switch (pilihan) {
-            case 1: tambahBarang(); break;
-            case 2: hapusBarang(); break;
-            case 3: perbaruiBarang();
+            case 1:
+                tambahBarang();
                 break;
-            case 4:cekStok();
+            case 2:
+                hapusBarang();
+                break;
+            case 3:
+                perbaruiBarang();
+                break;
+            case 4:
+                cekStok();
                 break;
             case 5:
-                // daftarBarang();
+                //daftarBarang();
                 break;
             case 6:
                 cout << "Keluar dari sistem.\n";
@@ -118,9 +134,7 @@ void menu() {
     } while (pilihan != 6);
 }
 
-
 int main() {
     menu();
     return 0;
 }
-
